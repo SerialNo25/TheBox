@@ -1,0 +1,93 @@
+{
+  "id": 8,
+  "type": "barchart",
+  "title": "Delivery History By Time Of Day",
+  "gridPos": {
+    "x": 12,
+    "y": 10,
+    "h": 8,
+    "w": 12
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "lineWidth": 1,
+        "fillOpacity": 80,
+        "gradientMode": "none",
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "thresholds"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.6.0",
+  "targets": [
+    {
+      "queryText": "SELECT \n  CASE \n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 6 AND 7 THEN '06-08'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 8 AND 9 THEN '08-10'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 10 AND 11 THEN '10-12'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 12 AND 13 THEN '12-14'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 14 AND 15 THEN '14-16'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 16 AND 17 THEN '16-18'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 18 AND 19 THEN '18-20'\n    ELSE 'Other'\n  END as time_range,\n  COUNT(*) as package_count\nFROM lora_messages\nWHERE CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 6 AND 19\nGROUP BY time_range\nORDER BY \n  CASE time_range\n    WHEN '06-08' THEN 1\n    WHEN '08-10' THEN 2\n    WHEN '10-12' THEN 3\n    WHEN '12-14' THEN 4\n    WHEN '14-16' THEN 5\n    WHEN '16-18' THEN 6\n    WHEN '18-20' THEN 7\n    ELSE 8\n  END;",
+      "queryType": "table",
+      "rawQueryText": "SELECT \n  CASE \n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 6 AND 7 THEN '06-08'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 8 AND 9 THEN '08-10'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 10 AND 11 THEN '10-12'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 12 AND 13 THEN '12-14'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 14 AND 15 THEN '14-16'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 16 AND 17 THEN '16-18'\n    WHEN CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 18 AND 19 THEN '18-20'\n    ELSE 'Other'\n  END as time_range,\n  COUNT(*) as package_count\nFROM lora_messages\nWHERE CAST(strftime('%H', timestamp) AS INTEGER) BETWEEN 6 AND 19\nGROUP BY time_range\nORDER BY \n  CASE time_range\n    WHEN '06-08' THEN 1\n    WHEN '08-10' THEN 2\n    WHEN '10-12' THEN 3\n    WHEN '12-14' THEN 4\n    WHEN '14-16' THEN 5\n    WHEN '16-18' THEN 6\n    WHEN '18-20' THEN 7\n    ELSE 8\n  END;",
+      "refId": "A",
+      "timeColumns": [
+        "time",
+        "ts"
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "frser-sqlite-datasource",
+    "uid": "aeheefsk50268c"
+  },
+  "options": {
+    "orientation": "auto",
+    "xTickLabelRotation": 0,
+    "xTickLabelSpacing": 0,
+    "showValue": "auto",
+    "stacking": "none",
+    "groupWidth": 0.7,
+    "barWidth": 0.97,
+    "barRadius": 0,
+    "fullHighlight": false,
+    "tooltip": {
+      "mode": "single",
+      "sort": "none",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": false,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}

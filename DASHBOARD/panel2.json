@@ -1,0 +1,127 @@
+{
+  "id": 2,
+  "type": "geomap",
+  "title": "Your boxes",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 10,
+    "w": 24
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        }
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.6.0",
+  "targets": [
+    {
+      "queryText": "SELECT\n  'The Box I' as name,\n  47.4278282 as latitude,\n  9.3770491 as longitude,\n  'active' as status\n\n",
+      "queryType": "table",
+      "rawQueryText": "SELECT\n  'The Box I' as name,\n  47.4278282 as latitude,\n  9.3770491 as longitude,\n  'active' as status\n\n",
+      "refId": "A",
+      "timeColumns": [
+        "time",
+        "ts"
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "frser-sqlite-datasource",
+    "uid": "aeheefsk50268c"
+  },
+  "options": {
+    "view": {
+      "allLayers": true,
+      "id": "fit",
+      "lat": 0,
+      "lon": 0,
+      "zoom": 15
+    },
+    "controls": {
+      "showZoom": true,
+      "mouseWheelZoom": true,
+      "showAttribution": true,
+      "showScale": false,
+      "showMeasure": false,
+      "showDebug": false
+    },
+    "tooltip": {
+      "mode": "details"
+    },
+    "basemap": {
+      "config": {},
+      "name": "Layer 0",
+      "type": "default"
+    },
+    "layers": [
+      {
+        "config": {
+          "showLegend": true,
+          "style": {
+            "color": {
+              "fixed": "#37872D"
+            },
+            "opacity": 1,
+            "rotation": {
+              "fixed": 0,
+              "max": 360,
+              "min": -360,
+              "mode": "mod"
+            },
+            "size": {
+              "fixed": 5,
+              "max": 15,
+              "min": 2
+            },
+            "symbol": {
+              "fixed": "img/icons/marker/circle.svg",
+              "mode": "fixed"
+            },
+            "symbolAlign": {
+              "horizontal": "center",
+              "vertical": "center"
+            },
+            "textConfig": {
+              "fontSize": 12,
+              "offsetX": 0,
+              "offsetY": 0,
+              "textAlign": "center",
+              "textBaseline": "middle"
+            }
+          }
+        },
+        "location": {
+          "mode": "auto"
+        },
+        "name": "Box 1 - online",
+        "tooltip": true,
+        "type": "markers"
+      }
+    ]
+  }
+}

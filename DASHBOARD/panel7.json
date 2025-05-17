@@ -1,0 +1,93 @@
+{
+  "id": 7,
+  "type": "barchart",
+  "title": "Delivery History By Day Of Week",
+  "gridPos": {
+    "x": 0,
+    "y": 10,
+    "h": 8,
+    "w": 12
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "lineWidth": 1,
+        "fillOpacity": 80,
+        "gradientMode": "none",
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.6.0",
+  "targets": [
+    {
+      "queryText": "SELECT \n  CASE strftime('%w', timestamp)\n    WHEN '0' THEN 'Sunday'\n    WHEN '1' THEN 'Monday'\n    WHEN '2' THEN 'Tuesday'\n    WHEN '3' THEN 'Wednesday'\n    WHEN '4' THEN 'Thursday'\n    WHEN '5' THEN 'Friday'\n    WHEN '6' THEN 'Saturday'\n  END as weekday,\n  COUNT(*) as package_count\nFROM lora_messages\nGROUP BY weekday\nORDER BY CASE weekday\n  WHEN 'Monday' THEN 1\n  WHEN 'Tuesday' THEN 2\n  WHEN 'Wednesday' THEN 3\n  WHEN 'Thursday' THEN 4\n  WHEN 'Friday' THEN 5\n  WHEN 'Saturday' THEN 6\n  WHEN 'Sunday' THEN 7\nEND;",
+      "queryType": "table",
+      "rawQueryText": "SELECT \n  CASE strftime('%w', timestamp)\n    WHEN '0' THEN 'Sunday'\n    WHEN '1' THEN 'Monday'\n    WHEN '2' THEN 'Tuesday'\n    WHEN '3' THEN 'Wednesday'\n    WHEN '4' THEN 'Thursday'\n    WHEN '5' THEN 'Friday'\n    WHEN '6' THEN 'Saturday'\n  END as weekday,\n  COUNT(*) as package_count\nFROM lora_messages\nGROUP BY weekday\nORDER BY CASE weekday\n  WHEN 'Monday' THEN 1\n  WHEN 'Tuesday' THEN 2\n  WHEN 'Wednesday' THEN 3\n  WHEN 'Thursday' THEN 4\n  WHEN 'Friday' THEN 5\n  WHEN 'Saturday' THEN 6\n  WHEN 'Sunday' THEN 7\nEND;",
+      "refId": "A",
+      "timeColumns": [
+        "time",
+        "ts"
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "frser-sqlite-datasource",
+    "uid": "aeheefsk50268c"
+  },
+  "options": {
+    "orientation": "auto",
+    "xTickLabelRotation": 0,
+    "xTickLabelSpacing": 0,
+    "showValue": "auto",
+    "stacking": "none",
+    "groupWidth": 0.7,
+    "barWidth": 0.97,
+    "barRadius": 0,
+    "fullHighlight": false,
+    "tooltip": {
+      "mode": "single",
+      "sort": "none",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": 4,
+  "type": "table",
+  "title": "Latest Delivery",
+  "gridPos": {
+    "x": 0,
+    "y": 19,
+    "h": 9,
+    "w": 24
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "align": "auto",
+        "cellOptions": {
+          "type": "auto"
+        },
+        "inspect": false
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.6.0",
+  "targets": [
+    {
+      "queryText": "SELECT \n  timestamp as \"Time\",\n  weight as \"Weight (g)\",\n  rssi as \"RSSI\",\n  snr as \"SNR\"\nFROM lora_messages\nWHERE weight > 0\nORDER BY timestamp DESC\nLIMIT 10",
+      "queryType": "table",
+      "rawQueryText": "SELECT \n  timestamp as \"Time\",\n  weight as \"Weight (g)\",\n  rssi as \"RSSI\",\n  snr as \"SNR\"\nFROM lora_messages\nWHERE weight > 0\nORDER BY timestamp DESC\nLIMIT 10",
+      "refId": "A",
+      "timeColumns": [
+        "time",
+        "ts"
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "frser-sqlite-datasource",
+    "uid": "aeheefsk50268c"
+  },
+  "options": {
+    "showHeader": true,
+    "cellHeight": "sm",
+    "footer": {
+      "show": false,
+      "reducer": [
+        "sum"
+      ],
+      "countRows": false,
+      "fields": ""
+    }
+  }
+}
