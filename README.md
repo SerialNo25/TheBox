@@ -3,8 +3,7 @@
 
 ### Requirements
 
-
-The first step in any design process is to list the requirements that the system has to fulfill. The goal of this project was to design a system that is able to detect when new parcels are deposited and notify the user upon detection that new mail has arrived. This type of system can be categorized as a non-critical system, as it does not cause any significant harm or major disruption if it were to fail.
+The goal of this project was to design a system that is able to detect when new parcels are deposited and notify the user upon detection that new mail has arrived. This type of system can be categorized as a non-critical system, as it does not cause any significant harm or major disruption if it were to fail.
 
 With regard to the characteristics of the system, we aimed to design a solution that provides all the necessary functionality while emphasizing convenient usability for the end user. The reactivity of the system can be low as the real-time constraints are soft, meaning that a delayed response is acceptable. In terms of predictability, we strove to create a solution that performs consistently, allowing us to determine how the system will behave in relevant scenarios. Dependability, on the other hand, is not as crucial, thus a moderate level is acceptable. Another goal was to create a general\_purpose design suitable for most mailboxes. This aspect also ties into the system's efficiency, which should be optimized with usability in mind.
 
